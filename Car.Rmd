@@ -1,0 +1,27 @@
+---
+title: "Cars' data"
+author: "Kush Gupta"
+date: "November 5, 2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Understanding Gas Mileage
+
+We use the `mtcars` data set , and using that, we can make a plot to infer the relationship of various factors on mileage (`mpg`).
+
+First, we will plot weight (`wt`) vs mileage (`mpg`) along x/y axes. Then, we will visualise number of cylinders (`cyl`) as colours and the horsepower (`hp`) as an individual point in the plot we obtained.
+
+## Visualizing the Data
+
+```{r plot, echo=FALSE}
+suppressPackageStartupMessages(library(plotly))
+plot_ly(data = mtcars, x = ~wt, y = ~mpg, 
+        color = ~as.factor(cyl), size = ~hp,
+        text = ~paste("Weight: ", wt, '<br>MpG:', mpg),
+        type = "scatter", mode = "markers") %>%
+  layout(title = "Cars' data")
+```
